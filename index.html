@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inmobiliaria Peralta | Alta Córdoba</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0d1b2a;
+      --navy-mid:  #152436;
+      --navy-soft: #1e3050;
+      --gold:      #c9a84c;
+      --gold-light:#e2c97e;
+      --gold-pale: #f5e9c8;
+      --cream:     #f9f5ee;
+      --text:      #1a1a2e;
+      --muted:     #8a8f9a;
+      --white:     #ffffff;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'Inter', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--navy);
+      color: var(--white);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5vw;
+      background: rgba(13, 27, 42, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--gold-light);
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-family: var(--sans);
+      font-size: 0.6rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-cta {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 0.55rem 1.4rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.25s;
+    }
+
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 5vw 5rem;
+      gap: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 70% at 70% 50%, rgba(201,168,76,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 10% 80%, rgba(30,48,80,0.8) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Signature element: vertical gold rule with year */
+    .hero-rule {
+      position: absolute;
+      left: calc(50% - 0.5px);
+      top: 10%;
+      bottom: 10%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+      opacity: 0.25;
+    }
+
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-subtitle {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 2.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-desc {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.6);
+      max-width: 38ch;
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 0.85rem 2.2rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    .btn-ghost {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      background: transparent;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.25s, color 0.25s;
+    }
+
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold-light); }
+
+    /* Hero right — placeholder for foto */
+    .hero-visual {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1.5rem;
+    }
+
+    .hero-img-frame {
+      width: 100%;
+      max-width: 480px;
+      aspect-ratio: 4/5;
+      background: var(--navy-soft);
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      color: rgba(255,255,255,0.25);
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img-frame::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+    }
+
+    .hero-img-icon {
+      font-size: 2.5rem;
+      opacity: 0.3;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      width: 100%;
+      max-width: 480px;
+      background: rgba(201,168,76,0.15);
+    }
+
+    .stat {
+      background: var(--navy-mid);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .stat-number {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 0.35rem;
+    }
+
+    /* ── SERVICIOS ── */
+    .section {
+      padding: 6rem 5vw;
+    }
+
+    .section-light {
+      background: var(--cream);
+      color: var(--text);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 4rem;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .section-tag {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--white);
+    }
+
+    .section-light .section-title { color: var(--text); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: rgba(201,168,76,0.15);
+    }
+
+    .service-card {
+      background: var(--navy-mid);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+    }
+
+    .service-card:hover { background: var(--navy-soft); }
+
+    .service-icon {
+      width: 3rem;
+      height: 3rem;
+      border: 1px solid rgba(201,168,76,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .service-desc {
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── PROPIEDADES ── */
+    .props-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .prop-card {
+      background: var(--white);
+      border: 1px solid rgba(201,168,76,0.2);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .prop-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(13,27,42,0.15);
+    }
+
+    .prop-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #e8e0d0 0%, #d4c9b0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: rgba(13,27,42,0.2);
+      position: relative;
+    }
+
+    .prop-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--navy);
+      background: var(--gold);
+      padding: 0.3rem 0.7rem;
+    }
+
+    .prop-info { padding: 1.5rem; }
+
+    .prop-type {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .prop-name {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .prop-loc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .prop-price {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--navy);
+    }
+
+    /* ── NOSOTROS ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+
+    .about-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--navy-soft);
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.2);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
+    .about-accent {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 60%;
+      aspect-ratio: 1;
+      border: 1px solid rgba(201,168,76,0.2);
+      z-index: -1;
+    }
+
+    .about-year {
+      font-family: var(--serif);
+      font-size: 6rem;
+      font-weight: 300;
+      color: rgba(201,168,76,0.08);
+      line-height: 1;
+      position: absolute;
+      bottom: -1rem;
+      left: -1rem;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .about-content .section-tag { color: var(--gold); }
+
+    .about-content .section-title { color: var(--white); margin-bottom: 1.5rem; }
+
+    .about-body {
+      font-size: 0.9rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 2rem;
+    }
+
+    .about-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .about-highlights li {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .about-highlights li::before {
+      content: '';
+      width: 1.5rem;
+      height: 1px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACTO ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info { }
+
+    .contact-item {
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-value {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      background: var(--navy-mid);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.25s;
+      width: 100%;
+      -webkit-appearance: none;
+    }
+
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+    .form-textarea { resize: vertical; min-height: 130px; }
+
+    .form-select option { background: var(--navy-mid); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #07111c;
+      padding: 3rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-brand {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-brand strong {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding-top: 6rem; }
+      .hero-visual { align-items: center; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .nav-links { display: none; }
+      .hero-rule { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-logo">
+    Peralta
+    <span>Inmobiliaria · Alta Córdoba</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#propiedades">Propiedades</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta">Consultar</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-rule"></div>
+
+  <div class="hero-content fade-up">
+    <p class="hero-eyebrow">Inmobiliaria Peralta</p>
+    <h1 class="hero-title">
+      Encontrá tu <em>lugar</em><br>en Córdoba
+    </h1>
+    <p class="hero-subtitle">Alta Córdoba · Desde 2006</p>
+    <p class="hero-desc">
+      Asesoramiento personalizado en compraventa y alquiler de propiedades. Más de 18 años de trayectoria profesional en el mercado inmobiliario cordobés.
+    </p>
+    <div class="hero-actions">
+      <a href="#propiedades" class="btn-primary">Ver propiedades</a>
+      <a href="#contacto" class="btn-ghost">Contactarse</a>
+    </div>
+  </div>
+
+  <div class="hero-visual fade-up">
+    <div class="hero-img-frame">
+      <div class="hero-img-icon">🏛</div>
+      <span>Foto fachada / logo</span>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">18+</div>
+        <div class="stat-label">Años de matrícula</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Atención personal</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">ACba</div>
+        <div class="stat-label">Alta Córdoba</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">976</div>
+        <div class="stat-label">Anacreonte</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section class="section" id="servicios">
+  <div class="section-header fade-up">
+    <div>
+      <p class="section-tag">Lo que ofrecemos</p>
+      <h2 class="section-title">Servicios<br>inmobiliarios</h2>
+    </div>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon">🏠</div>
+      <h3 class="service-title">Venta de propiedades</h3>
+      <p class="service-desc">Tasación profesional y acompañamiento en todo el proceso de compraventa, desde la primera visita hasta la escritura.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">🔑</div>
+      <h3 class="service-title">Alquileres</h3>
+      <p class="service-desc">Gestión de contratos de alquiler, verificación de inquilinos y administración de propiedades para propietarios.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">📋</div>
+      <h3 class="service-title">Tasaciones</h3>
+      <p class="service-desc">Valuación precisa de inmuebles basada en el conocimiento del mercado local y la experiencia acumulada en Alta Córdoba.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon">📞</div>
+      <h3 class="service-title">Asesoramiento</h3>
+      <p class="service-desc">Consultas sobre inversiones, créditos hipotecarios y todo lo que necesitás saber antes de tomar una decisión.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROPIEDADES DESTACADAS -->
+<section class="section section-light" id="propiedades">
+  <div class="section-header fade-up">
+    <div>
+      <p class="section-tag" style="color: #b8943e;">Destacadas</p>
+      <h2 class="section-title" style="color: #1a1a2e;">Propiedades<br>disponibles</h2>
+    </div>
+    <a href="#contacto" class="btn-primary" style="align-self:flex-end;">Ver todas</a>
+  </div>
+
+  <div class="props-grid">
+    <div class="prop-card fade-up">
+      <div class="prop-img">
+        🏡
+        <span class="prop-badge">En venta</span>
+      </div>
+      <div class="prop-info">
+        <p class="prop-type">Casa · 3 ambientes</p>
+        <h3 class="prop-name">Casa en Alta Córdoba</h3>
+        <p class="prop-loc">📍 Alta Córdoba, Córdoba</p>
+        <p class="prop-price">Consultar precio</p>
+      </div>
+    </div>
+    <div class="prop-card fade-up">
+      <div class="prop-img">
+        🏢
+        <span class="prop-badge">Alquiler</span>
+      </div>
+      <div class="prop-info">
+        <p class="prop-type">Departamento · 2 ambientes</p>
+        <h3 class="prop-name">Dpto. céntrico</h3>
+        <p class="prop-loc">📍 Alta Córdoba, Córdoba</p>
+        <p class="prop-price">Consultar precio</p>
+      </div>
+    </div>
+    <div class="prop-card fade-up">
+      <div class="prop-img">
+        🏘
+        <span class="prop-badge">En venta</span>
+      </div>
+      <div class="prop-info">
+        <p class="prop-type">PH · 4 ambientes</p>
+        <h3 class="prop-name">PH con jardín</h3>
+        <p class="prop-loc">📍 Alta Córdoba, Córdoba</p>
+        <p class="prop-price">Consultar precio</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section class="section" id="nosotros">
+  <div class="about-grid">
+    <div class="about-img-wrap fade-up">
+      <div class="about-img">
+        <span style="font-size:2rem;opacity:.3">👤</span>
+        <span>Foto de Juana Ángeles Peralta</span>
+      </div>
+      <div class="about-accent"></div>
+      <div class="about-year">2006</div>
+    </div>
+
+    <div class="about-content fade-up">
+      <p class="section-tag">Quiénes somos</p>
+      <h2 class="section-title">Juana Ángeles<br><em style="color:var(--gold-light);font-style:italic">Peralta</em></h2>
+      <p class="about-body">
+        Martillera y corredora pública matriculada desde 2006, Juana Ángeles Peralta lleva más de 18 años acompañando a familias cordobesas en la compra, venta y alquiler de sus propiedades en Alta Córdoba.
+      </p>
+      <p class="about-body">
+        Su trabajo se basa en la confianza, la transparencia y el trato humano. Cada operación es única, y así la tratamos.
+      </p>
+      <ul class="about-highlights">
+        <li>Matrícula profesional desde 2006</li>
+        <li>Especializada en Alta Córdoba y alrededores</li>
+        <li>Atención personalizada en cada consulta</li>
+        <li>Acompañamiento integral hasta la escritura</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="section" id="contacto" style="background: var(--navy-mid);">
+  <div class="section-header fade-up">
+    <div>
+      <p class="section-tag">Escribinos</p>
+      <h2 class="section-title">Contacto</h2>
+    </div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info fade-up">
+      <div class="contact-item">
+        <p class="contact-label">Dirección</p>
+        <p class="contact-value">Anacreonte 976<br>Alta Córdoba, Córdoba</p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">Teléfono / WhatsApp</p>
+        <p class="contact-value"><!-- Agregá el número acá --><br><span style="font-size:.8rem;color:var(--muted)">(a completar)</span></p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">Email</p>
+        <p class="contact-value"><!-- Agregá el email acá --><br><span style="font-size:.8rem;color:var(--muted)">(a completar)</span></p>
+      </div>
+      <div class="contact-item">
+        <p class="contact-label">Horario de atención</p>
+        <p class="contact-value">Lunes a viernes<br>9:00 – 18:00 hs</p>
+      </div>
+    </div>
+
+    <div class="contact-form fade-up">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nombre</label>
+          <input type="text" class="form-input" placeholder="Tu nombre" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Teléfono</label>
+          <input type="tel" class="form-input" placeholder="Tu teléfono" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="tu@email.com" />
+      </div>
+      <div class="form-group">
+        <label class="form-label">Me interesa</label>
+        <select class="form-select">
+          <option value="">Seleccioná una opción</option>
+          <option>Comprar una propiedad</option>
+          <option>Alquilar una propiedad</option>
+          <option>Vender mi propiedad</option>
+          <option>Tasar un inmueble</option>
+          <option>Otra consulta</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Mensaje</label>
+        <textarea class="form-textarea" placeholder="Contanos en qué podemos ayudarte..."></textarea>
+      </div>
+      <button class="btn-primary" style="align-self:flex-start;cursor:pointer;">Enviar consulta</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">
+    <strong>Peralta</strong> Inmobiliaria
+  </div>
+  <p class="footer-copy">© 2024 Inmobiliaria Peralta · Alta Córdoba · Matrícula 2006</p>
+  <ul class="footer-links">
+    <li><a href="#inicio">Inicio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</footer>
+
+<script>
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
